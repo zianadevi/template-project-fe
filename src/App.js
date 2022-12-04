@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import { ButtonPrimary } from './shared/component/button/ButtonPrimary';
+import { Loading } from './shared/component/loading/Loading';
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    // <ButtonPrimary label='Submit'/>
+    <Loading />
   );
 }
 

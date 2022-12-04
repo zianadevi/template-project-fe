@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { apiClientFactory } from './shared/ApiClientFactory'
+import { clientInstance } from './shared/AxiosClient';
+import { ServiceFactory } from './services/ServiceFactory'
+import { BrowserRouter } from 'react-router-dom';
+import { DepsProvider } from './shared/context/DependencyContext'
+import { AuthProvider } from './shared/context/AuthContext'
+
+const apiClient = apiClientFactory(clientInstance);
+const services = ServiceFactory(apiClient)
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <DepsProvider services={services}>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </DepsProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
